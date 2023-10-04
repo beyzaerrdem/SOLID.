@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SOLID
+namespace SOLID.SingleResponsibility.SRPBad
 {
     public class Product
     {
@@ -16,14 +16,14 @@ namespace SOLID
         public List<Product> products => productList;
 
 
-        public Product() 
+        public Product()
         {
             productList = new()
             {
                 new(){Id=1,Name="Kitap 1"},
-                new(){Id=2, Name="Kitap 1"},
-                new(){Id=1,Name="Kitap 1"},
-                new(){Id=1,Name="Kitap 1"},          
+                new(){Id=2, Name="Kitap 2"},
+                new(){Id=3,Name="Kitap 3"},
+                new(){Id=4,Name="Kitap 4"},
             };
         }
 
@@ -33,7 +33,7 @@ namespace SOLID
 
             var findIndex = productList.FindIndex(p => p.Id == product.Id);
 
-            if(!hasProduct)
+            if (!hasProduct)
             {
                 productList.Add(product);
             }
@@ -46,7 +46,7 @@ namespace SOLID
         {
             var find = productList.Find(p => p.Id == id);
 
-            if(find == null)
+            if (find == null)
             {
                 throw new Exception("Ürün bulunamadı");
             }
